@@ -1,13 +1,67 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+}
+body {
+  background-color: #d0e8f2;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.form-select {
+  background-image: none;
+}
+.fixed {
+  position: fixed;
+  bottom: 70px;
+  right: 30px;
+  z-index: 99;
+  cursor: pointer;
+}
+.mastercard {
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+  border-radius: 13px;
+  height: 220px;
+  width: 400px;
+  box-shadow: -1px 6px 18px -9px rgba(0, 0, 0, 0.9);
+}
+.visa {
+  background: linear-gradient(to right, #232526, #414345);
+  border-radius: 13px;
+  height: 220px;
+  width: 400px;
+  box-shadow: -1px 6px 18px -9px rgba(0, 0, 0, 0.9);
+}
+.tip {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  .tabs {
+    background-color: #d0e8f2;
+    width: 100%;
+    margin: auto;
+  }
+  .nav-pills {
+    background-color: #d0e8f2;
+    width: 95%;
+    position: fixed;
+    bottom: 3px;
+    margin: auto;
+    z-index: 100;
+  }
+  .nav-item {
+    margin: 0;
+  }
+  .tip {
+    position: fixed;
+    bottom: 50px;
+    margin: auto;
+    width: 100%;
+  }
 }
