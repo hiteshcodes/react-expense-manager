@@ -1,13 +1,29 @@
 import React, { useState } from "react";
 import New from "./New";
 import ModalTransactionDetail from "../components/ModalTransactionDetail";
+import Printer from "../icons/printer.png";
 
 const ShowTransactions = ({ transactions }) => {
+  
   const date = new Date();
   const currMonth = date.getMonth() + 1;
   const currYear = date.getFullYear();
-  const yearMonth = `${currYear}-${currMonth}`;
-
+  const monthArr = [
+    "null",
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
+  const yearMonth = `${currYear}-${monthArr[currMonth]}`;
   const [month, setMonth] = useState(yearMonth);
   const [modalDetail, setModalDetail] = useState([]);
 
@@ -76,22 +92,29 @@ const ShowTransactions = ({ transactions }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container show-all-transactions">
       <New />
       <ModalTransactionDetail modalDetail={modalDetail} />
       <ul className="list-group p-0 mt-4">
         <div className="d-flex justify-content-between">
           <h5 className="m-2 text-primary p-1 my-auto">Transactions</h5>
-          <div className="month-picker">
+          <div className="month-picker d-flex">
             <input
               className="month-picker-input bg-transparent border-primary rounded p-1"
               type="month"
               value={month}
               onChange={handleFilter}
             />
+            <button
+              className="btn border-secondary mx-2 print-btn"
+              onClick={() => window.print()}
+            >
+              <img src={Printer} alt="" width="20px" />
+            </button>
           </div>
         </div>
         <Alltransactions />
+        {/* <Total /> */}
       </ul>
     </div>
   );

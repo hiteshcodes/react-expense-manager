@@ -1,9 +1,10 @@
 import React from "react";
+import Account from "./Account";
 import Cards from "./Cards";
 import Home from "./Home";
 import ShowTransactions from "./ShowTransactions";
 
-const Tabs = ({ transactions, cards }) => {
+const Tabs = ({ transactions, cards, handleSubmitAddNewCard }) => {
   return (
     <div className="tabs">
       <ul
@@ -87,7 +88,10 @@ const Tabs = ({ transactions, cards }) => {
           role="tabpanel"
           aria-labelledby="pills-cards-tab"
         >
-          <Cards cards={cards} />
+          <Cards
+            cards={cards}
+            handleSubmitAddNewCard={handleSubmitAddNewCard}
+          />
         </div>
         <div
           className="tab-pane fade"
@@ -95,7 +99,7 @@ const Tabs = ({ transactions, cards }) => {
           role="tabpanel"
           aria-labelledby="pills-account-tab"
         >
-          <h2>Account</h2>
+          <Account />
         </div>
       </div>
     </div>

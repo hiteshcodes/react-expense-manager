@@ -3,7 +3,7 @@ import AddNew from "../icons/addNew.png";
 
 const New = () => {
   return (
-    <div className="fixed">
+    <div className="fixed add-new-button">
       <button
         className="btn rounded-circle"
         data-bs-toggle="modal"

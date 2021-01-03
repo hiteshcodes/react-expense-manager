@@ -2,22 +2,38 @@ import React from "react";
 import master from "../icons/master.png";
 import visa from "../icons/visa2.png";
 import chip from "../icons/chip.png";
+import AddNewCard from "./AddNewCard";
 
-const Cards = ({ cards }) => {
+const Cards = ({ cards, handleSubmitAddNewCard }) => {
   return cards.length > 0 ? (
     <div className="mx-auto mt-5 d-flex flex-wrap">
+      {/* <div className="add-new-card">
+        <AddNewCard />
+      </div> */}
       {cards.map((card) => {
         const cardnumber = card.number.slice(-4);
         const cardNumber = `**** **** **** ${cardnumber}`;
         return (
           <div
             className={
-              card.type === "mastercard"
+              card.category === "mastercard"
                 ? "mx-auto my-4 position-relative text-white mastercard"
                 : "mx-auto my-4 position-relative text-white visa"
             }
-            key={card.id}
+            key={card.number}
           >
+            <span
+              className="position-absolute"
+              style={{
+                textTransform: "uppercase",
+                opacity: "0.3",
+                fontSize: "14px",
+                left: "45px",
+                top: "15px",
+              }}
+            >
+              {card.type}
+            </span>
             <div
               className="mastercard_logo position-absolute d-grid"
               style={{
@@ -25,7 +41,7 @@ const Cards = ({ cards }) => {
                 top: "10px",
               }}
             >
-              {card.type === "mastercard" ? (
+              {card.category === "mastercard" ? (
                 <img src={master} alt="" width="50px" />
               ) : (
                 <img src={visa} alt="" width="50px" />
@@ -34,7 +50,7 @@ const Cards = ({ cards }) => {
                 className="mx-auto"
                 style={{ fontSize: "12px", marginTop: "-5px" }}
               >
-                {card.type === "mastercard" ? "mastercard" : ""}
+                {card.category === "mastercard" ? "mastercard" : ""}
               </small>
             </div>
             <img
@@ -50,9 +66,6 @@ const Cards = ({ cards }) => {
             <span
               className="position-absolute mx-auto text-center"
               style={{
-                // top: "50%",
-                // left: "50%",
-                // transform: "Translate(-50%, -50%)",
                 width: "100%",
                 wordSpacing: "20px",
                 margin: "110px 75px",
@@ -73,8 +86,11 @@ const Cards = ({ cards }) => {
                   letterSpacing: "3px",
                 }}
               >
-                <span> {card.cardHolder} </span>
-                <span> {card.valid} </span>
+                <span> {card.holder} </span>
+                <span>
+                  {" "}
+                  {card.from}/{card.upto}{" "}
+                </span>
               </div>
             </div>
           </div>
@@ -82,7 +98,12 @@ const Cards = ({ cards }) => {
       })}
     </div>
   ) : (
-    <h2> Loading... </h2>
+    <>
+      <AddNewCard />
+      <div className="container d-flex justify-content-center mt-5">
+        <h4 className="text-secondary"> No Cards Added </h4>
+      </div>
+    </>
   );
 };
 

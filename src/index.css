@@ -10,6 +10,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 .form-select {
   background-image: none;
 }
@@ -42,7 +43,7 @@ code {
   text-align: center;
 }
 @media only screen and (max-width: 600px) {
-  .tabs {
+  /* .tabs {
     background-color: #d0e8f2;
     width: 100%;
     margin: auto;
@@ -57,11 +58,24 @@ code {
   }
   .nav-item {
     margin: 0;
-  }
+  }*/
   .tip {
     position: fixed;
-    bottom: 50px;
+    bottom: 80px;
     margin: auto;
     width: 100%;
+  }
+  .navigation {
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+  }
+}
+@media print {
+  .add-new-button,
+  .print-btn,
+  .main-heading,
+  .nav-item {
+    display: none;
   }
 }

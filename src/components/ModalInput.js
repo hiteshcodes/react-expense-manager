@@ -1,7 +1,7 @@
 import React from "react";
 import InputField from "./InputField";
 
-const Modal = ({ transaction }) => {
+const Modal = ({ transaction, cards }) => {
   return (
     <>
       <div
@@ -25,7 +25,7 @@ const Modal = ({ transaction }) => {
               ></button>
             </div>
             <div className="modal-body">
-              <InputField transaction={transaction} />
+              <InputField transaction={transaction} cards={cards} />
             </div>
             <div className="modal-footer">
               <button
