@@ -22,7 +22,29 @@ const ModalTransactionDetail = ({ modalDetail }) => {
               aria-label="Close"
             ></button>
           </div>
-          <div className="modal-body">Transaction Detail</div>
+          <div className="modal-body">
+            {modalDetail.map((item) => {
+              return (
+                <ul className="list-group" key={item.id}>
+                  <li className="list-group-item active" aria-current="true">
+                    {item.name}
+                  </li>
+                  <li className="list-group-item">Category: {item.category}</li>
+                  <li className="list-group-item">
+                    Description: {item.description}
+                  </li>
+                  <li className="list-group-item">Type: {item.type}</li>
+                  <li className="list-group-item">
+                    Payment mode: **** **** **** {item.mode.slice(-4)}
+                  </li>
+                  <li className="list-group-item">Amount: {item.amount}</li>
+                  <li className="list-group-item">
+                    Added on: {item.timeStamp}
+                  </li>
+                </ul>
+              );
+            })}
+          </div>
           <div className="modal-footer">
             <button
               type="button"

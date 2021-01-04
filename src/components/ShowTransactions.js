@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import New from "./New";
 import ModalTransactionDetail from "../components/ModalTransactionDetail";
 import Printer from "../icons/printer.png";
+import Delete from "../icons/delete.png";
 
-const ShowTransactions = ({ transactions }) => {
-  
+const ShowTransactions = ({ transactions, deleteTransaction }) => {
   const date = new Date();
   const currMonth = date.getMonth() + 1;
   const currYear = date.getFullYear();
@@ -29,10 +29,6 @@ const ShowTransactions = ({ transactions }) => {
 
   const handleFilter = (e) => {
     setMonth(e.target.value);
-  };
-
-  const handleDetailModal = (item) => {
-    setModalDetail([modalDetail, item]);
   };
 
   const Alltransactions = () => {
@@ -70,15 +66,25 @@ const ShowTransactions = ({ transactions }) => {
                   }}
                   data-bs-toggle="modal"
                   data-bs-target="#transactionDetailModal"
-                  onClick={() => handleDetailModal(items.id)}
+                  onClick={() => setModalDetail([items])}
                 >
                   {items.name}
                 </a>{" "}
                 <br />
                 <small style={{ color: "#456268" }}>{items.timeStamp}</small>
               </div>
-              <div className="wrapper-child d-flex justify-content-around">
-                <span>₹ {items.amount}</span>
+              <div className="wrapper-child align-items-center d-flex justify-content-around">
+                <div className="container d-flex justify-content-between">
+                  <span className="mx-2 d-flex align-items-center">
+                    ₹ {items.amount}
+                  </span>
+                  <button
+                    className="btn"
+                    onClick={() => deleteTransaction(items)}
+                  >
+                    <img src={Delete} alt="" width="25px" />
+                  </button>
+                </div>
               </div>
             </div>
           </li>

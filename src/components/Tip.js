@@ -6,6 +6,8 @@ const Tip = ({ income, expense, balance }) => {
   useEffect(() => {
     if (balance > 0) {
       setTip("Yay! You are saving ;)");
+    } else if (balance === 0) {
+      setTip("");
     } else {
       setTip("You are spending a lot :(");
     }

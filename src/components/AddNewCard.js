@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddNew from "../icons/addNew.png";
 
-const AddNewCard = ({ cards, setCards }) => {
+const AddNewCard = ({ handleAddNewCard }) => {
   // const [cards, setCards] = useState([]);
   const [cardNumber, setCardNumber] = useState("");
   const [cardHolder, setCardHolder] = useState("");
@@ -12,7 +12,9 @@ const AddNewCard = ({ cards, setCards }) => {
   const [error, setError] = useState(false);
 
   const handleSubmitAddNewCard = () => {
+    const randomID = Math.floor(Math.random() * 999999);
     const newCardObj = {
+      id: randomID,
       number: cardNumber,
       holder: cardHolder,
       category: category,
@@ -21,20 +23,19 @@ const AddNewCard = ({ cards, setCards }) => {
       upto: validUpto,
     };
     if (
-      cardNumber.length == 16 &&
+      cardNumber.length === 16 &&
       cardHolder.length > 2 &&
       category &&
       type &&
-      validFrom.length == 2 &&
-      validUpto.length == 2
+      validFrom.length === 2 &&
+      validUpto.length === 2
     ) {
       console.log("success");
-      setCards([newCardObj, ...cards]);
+      handleAddNewCard(newCardObj);
     } else {
       console.log("Please enter correct values");
       setError(true);
     }
-
     setCardNumber("");
     setCardHolder("");
     setCategory("");
@@ -50,7 +51,7 @@ const AddNewCard = ({ cards, setCards }) => {
       <div className="fixed">
         <button
           type="button"
-          className="btn"
+          className="btn btn-secondary"
           data-bs-toggle="modal"
           data-bs-target="#add-new-card"
         >
@@ -64,7 +65,7 @@ const AddNewCard = ({ cards, setCards }) => {
         aria-labelledby="add-new-card"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-dialog-centered modal-xl">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
@@ -207,21 +208,22 @@ const AddNewCard = ({ cards, setCards }) => {
                     onChange={(e) => setValidUpto(e.target.value)}
                   />
                 </div>
+                {error && (
+                  <small className="text-danger">
+                    Please Enter Correct Values
+                  </small>
+                )}
               </div>
-              {error && (
-                <small className="text-danger">
-                  Please Enter Correct Values
-                </small>
-              )}
+              <div className="d-flex justify-content-end">
+                <button
+                  className="btn btn-secondary"
+                  onClick={handleSubmitAddNewCard}
+                >
+                  Submit
+                </button>
+              </div>
             </div>
             <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={handleSubmitAddNewCard}
-              >
-                Submit
-              </button>
               <button
                 type="button"
                 className="btn btn-primary"

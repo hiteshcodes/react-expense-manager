@@ -5,7 +5,7 @@ const New = () => {
   return (
     <div className="fixed add-new-button">
       <button
-        className="btn rounded-circle"
+        className="btn btn-secondary"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >

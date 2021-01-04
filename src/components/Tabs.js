@@ -3,12 +3,23 @@ import Account from "./Account";
 import Cards from "./Cards";
 import Home from "./Home";
 import ShowTransactions from "./ShowTransactions";
+import AddNewCard from "./AddNewCard";
+import HomeIcon from "../icons/home.png";
+import TransactionIcon from "../icons/transactions.png";
+import CardsIcon from "../icons/cards.png";
+import AccountIcon from "../icons/account.png";
 
-const Tabs = ({ transactions, cards, handleSubmitAddNewCard }) => {
+const Tabs = ({
+  transactions,
+  cards,
+  handleAddNewCard,
+  deleteCard,
+  deleteTransaction,
+}) => {
   return (
     <div className="tabs">
       <ul
-        className="nav nav-pills d-flex justify-content-between"
+        className="nav nav-pills d-flex justify-content-between p-0"
         id="pills-tab"
         role="tablist"
       >
@@ -22,7 +33,7 @@ const Tabs = ({ transactions, cards, handleSubmitAddNewCard }) => {
             aria-controls="pills-home"
             aria-selected="true"
           >
-            Home
+            <img src={HomeIcon} alt="" width="30px" />
           </a>
         </li>
         <li className="nav-item" role="presentation">
@@ -35,7 +46,7 @@ const Tabs = ({ transactions, cards, handleSubmitAddNewCard }) => {
             aria-controls="pills-transactions"
             aria-selected="false"
           >
-            Transactions
+            <img src={TransactionIcon} alt="" width="30px" />
           </a>
         </li>
         <li className="nav-item" role="presentation">
@@ -48,7 +59,7 @@ const Tabs = ({ transactions, cards, handleSubmitAddNewCard }) => {
             aria-controls="pills-cards"
             aria-selected="false"
           >
-            Cards
+            <img src={CardsIcon} alt="" width="30px" />
           </a>
         </li>
         <li className="nav-item" role="presentation">
@@ -61,7 +72,7 @@ const Tabs = ({ transactions, cards, handleSubmitAddNewCard }) => {
             aria-controls="pills-account"
             aria-selected="false"
           >
-            Account
+            <img src={AccountIcon} alt="" width="30px" />
           </a>
         </li>
       </ul>
@@ -80,7 +91,10 @@ const Tabs = ({ transactions, cards, handleSubmitAddNewCard }) => {
           role="tabpanel"
           aria-labelledby="pills-transactions-tab"
         >
-          <ShowTransactions transactions={transactions} />
+          <ShowTransactions
+            transactions={transactions}
+            deleteTransaction={deleteTransaction}
+          />
         </div>
         <div
           className="tab-pane fade"
@@ -88,10 +102,8 @@ const Tabs = ({ transactions, cards, handleSubmitAddNewCard }) => {
           role="tabpanel"
           aria-labelledby="pills-cards-tab"
         >
-          <Cards
-            cards={cards}
-            handleSubmitAddNewCard={handleSubmitAddNewCard}
-          />
+          <AddNewCard handleAddNewCard={handleAddNewCard} />
+          <Cards cards={cards} deleteCard={deleteCard} />
         </div>
         <div
           className="tab-pane fade"

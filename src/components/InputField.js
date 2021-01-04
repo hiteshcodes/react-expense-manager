@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 const InputField = ({ transaction, cards }) => {
   const [inputName, setInputName] = useState("");
   const [inputAmount, setInputAmount] = useState("");
@@ -8,6 +9,7 @@ const InputField = ({ transaction, cards }) => {
   const [mode, setMode] = useState("Cash");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [error, setError] = useState(false);
 
   const handleInputName = (e) => {
     setInputName(e.target.value);
@@ -47,7 +49,7 @@ const InputField = ({ transaction, cards }) => {
       (/^\s*$/.test(type) && !description) ||
       /^\s*$/.test(description)
     ) {
-      alert("Fields Can't remain empty");
+      setError("Fields Can't remain empty");
       return;
     }
     const randomID = Math.floor(Math.random() * 999999);
@@ -89,7 +91,7 @@ const InputField = ({ transaction, cards }) => {
     const newTransaction = {
       id: randomID,
       name: inputName,
-      amount: inputAmount,
+      amount: Number(inputAmount),
       type: type,
       mode: mode,
       description: description,
@@ -100,12 +102,14 @@ const InputField = ({ transaction, cards }) => {
     console.log(newTransaction);
 
     transaction(newTransaction);
+
     setInputName("");
     setInputAmount("");
     setType("");
     setMode("");
     setDescription("");
     setCategory("");
+    setError("");
   };
 
   return (
@@ -187,7 +191,7 @@ const InputField = ({ transaction, cards }) => {
               <option value="Cash">Cash</option>
               {cards.length > 0 ? (
                 cards.map((card) => {
-                  const cardDetail = `${card.cardType} **** ${card.number.slice(
+                  const cardDetail = `${card.type} **** ${card.number.slice(
                     -4
                   )}`;
                   return (
@@ -247,6 +251,7 @@ const InputField = ({ transaction, cards }) => {
             <option value="credit-card-bill">Credit Card Bill</option>
           </select>
         </div>
+        <small className="text-danger fw-bold">{error}</small>
         <div className="col col-lg-1 col-md-2 col-sm-3 mt-auto">
           <button className="btn border-secondary mt-3" onClick={handleSubmit}>
             Submit

@@ -1,25 +1,22 @@
 import React from "react";
 import master from "../icons/master.png";
 import visa from "../icons/visa2.png";
+import rupay from "../icons/rupay.png";
 import chip from "../icons/chip.png";
-import AddNewCard from "./AddNewCard";
 
-const Cards = ({ cards, handleSubmitAddNewCard }) => {
+const Cards = ({ cards, deleteCard }) => {
   return cards.length > 0 ? (
-    <div className="mx-auto mt-5 d-flex flex-wrap">
-      {/* <div className="add-new-card">
-        <AddNewCard />
+    <div className="mx-auto d-flex flex-column" style={{ marginBottom: "100px" }}>
+      {/* <div className="add-new-card ">
+        <AddNewCard handleAddNewCard={handleAddNewCard} />
       </div> */}
       {cards.map((card) => {
         const cardnumber = card.number.slice(-4);
         const cardNumber = `**** **** **** ${cardnumber}`;
+
         return (
           <div
-            className={
-              card.category === "mastercard"
-                ? "mx-auto my-4 position-relative text-white mastercard"
-                : "mx-auto my-4 position-relative text-white visa"
-            }
+            className={`mx-auto my-4 position-relative text-white my-5 ${card.category}`}
             key={card.number}
           >
             <span
@@ -41,10 +38,14 @@ const Cards = ({ cards, handleSubmitAddNewCard }) => {
                 top: "10px",
               }}
             >
-              {card.category === "mastercard" ? (
+              {card.category === "mastercard" && (
                 <img src={master} alt="" width="50px" />
-              ) : (
+              )}
+              {card.category === "visa" && (
                 <img src={visa} alt="" width="50px" />
+              )}
+              {card.category === "rupay" && (
+                <img src={rupay} alt="" width="50px" />
               )}
               <small
                 className="mx-auto"
@@ -93,13 +94,32 @@ const Cards = ({ cards, handleSubmitAddNewCard }) => {
                 </span>
               </div>
             </div>
+            <div
+              className="card-actions position-absolute w-100"
+              style={{
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                bottom: "-70px",
+              }}
+            >
+              <div className="d-flex">
+                <button className="btn btn-outline-dark mx-auto">
+                  View Detail
+                </button>
+                <button
+                  className="btn btn-danger mx-auto"
+                  onClick={() => deleteCard(card)}
+                >
+                  Delete Card
+                </button>
+              </div>
+            </div>
           </div>
         );
       })}
     </div>
   ) : (
     <>
-      <AddNewCard />
       <div className="container d-flex justify-content-center mt-5">
         <h4 className="text-secondary"> No Cards Added </h4>
       </div>
