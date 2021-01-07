@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import New from "./New";
-import ModalTransactionDetail from "../components/ModalTransactionDetail";
-import Printer from "../icons/printer.png";
-import Delete from "../icons/delete.png";
+import ModalTransactionDetail from "../transactions/ModalTransactionDetail";
+import Printer from "../../icons/printer.png";
+import Delete from "../../icons/delete.png";
 
 const ShowTransactions = ({ transactions, deleteTransaction }) => {
   const date = new Date();

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 const InputField = ({ transaction, cards }) => {
   const [inputName, setInputName] = useState("");
   const [inputAmount, setInputAmount] = useState("");
@@ -109,7 +108,7 @@ const InputField = ({ transaction, cards }) => {
     setMode("");
     setDescription("");
     setCategory("");
-    setError("");
+    setError(false);
   };
 
   return (
@@ -249,6 +248,7 @@ const InputField = ({ transaction, cards }) => {
             <option value="flight">Flight</option>
             <option value="bus">Bus</option>
             <option value="credit-card-bill">Credit Card Bill</option>
+            <option value="other">Other</option>
           </select>
         </div>
         <small className="text-danger fw-bold">{error}</small>

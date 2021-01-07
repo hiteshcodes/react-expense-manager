@@ -1,5 +1,5 @@
 import React from "react";
-import AddNew from "../icons/addNew.png";
+import AddNew from "../../icons/addNew.png";
 
 const New = () => {
   return (

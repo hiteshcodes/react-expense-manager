@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Modal from "./components/ModalInput";
-import Tabs from "./components/Tabs";
-import AddNewCard from "./components/AddNewCard";
+import Modal from "./components/transactions/ModalInput";
+import Tabs from "./components/home/Tabs";
 
 const App = () => {
   const [cards, setCards] = useState([
@@ -111,14 +110,21 @@ const App = () => {
     // },
   ]);
 
-  const transaction = (newTransaction) => {
-    setTransactions([newTransaction, ...transactions]);
-  };
+  // get transactions from localstorage
+  useEffect(() => {
+    const transactions = localStorage.getItem("transactions");
+    transactions && setTransactions(JSON.parse(transactions));
+  }, []);
 
   // set transactions from localstorage
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
   }, [transactions]);
+
+  const transaction = (newTransaction) => {
+    setTransactions([newTransaction, ...transactions]);
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+  };
 
   // get cards from localstorage
   useEffect(() => {
@@ -148,12 +154,6 @@ const App = () => {
     setTransactions(deteledTransaction);
     localStorage.setItem("transactions", JSON.stringify(deteledTransaction));
   };
-
-  // get transactions from localstorage
-  useEffect(() => {
-    const transactions = localStorage.getItem("transactions");
-    transactions && setTransactions(JSON.parse(transactions));
-  }, []);
 
   return (
     <>

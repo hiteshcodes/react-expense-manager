@@ -32,6 +32,7 @@ const Modal = ({ transaction, cards }) => {
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
+                onClick={() => console.log("object")}
               >
                 Close
               </button>

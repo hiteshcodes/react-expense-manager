@@ -1,23 +1,25 @@
 import React from "react";
-import master from "../icons/master.png";
-import visa from "../icons/visa2.png";
-import rupay from "../icons/rupay.png";
-import chip from "../icons/chip.png";
+import master from "../../icons/master.png";
+import visa from "../../icons/visa2.png";
+import rupay from "../../icons/rupay.png";
+import chip from "../../icons/chip.png";
 
 const Cards = ({ cards, deleteCard }) => {
   return cards.length > 0 ? (
-    <div className="mx-auto d-flex flex-column" style={{ marginBottom: "100px" }}>
+    <div
+      className="mx-auto d-flex flex-column"
+      style={{ marginBottom: "100px" }}
+    >
       {/* <div className="add-new-card ">
         <AddNewCard handleAddNewCard={handleAddNewCard} />
       </div> */}
       {cards.map((card) => {
         const cardnumber = card.number.slice(-4);
         const cardNumber = `**** **** **** ${cardnumber}`;
-
         return (
           <div
             className={`mx-auto my-4 position-relative text-white my-5 ${card.category}`}
-            key={card.number}
+            key={card.id}
           >
             <span
               className="position-absolute"
@@ -103,7 +105,10 @@ const Cards = ({ cards, deleteCard }) => {
               }}
             >
               <div className="d-flex">
-                <button className="btn btn-outline-dark mx-auto">
+                <button
+                  className="btn btn-outline-dark mx-auto"
+                  onClick={() => console.log(card.holder)}
+                >
                   View Detail
                 </button>
                 <button

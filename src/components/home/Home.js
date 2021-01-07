@@ -1,5 +1,5 @@
 import React from "react";
-import Balance from "./Balance";
+import Balance from "../balance/Balance";
 
 const Home = ({ transactions }) => {
   return (

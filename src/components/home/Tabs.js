@@ -1,13 +1,13 @@
 import React from "react";
-import Account from "./Account";
-import Cards from "./Cards";
+import Account from "../account/Account";
+import Cards from "../cards/Cards";
 import Home from "./Home";
-import ShowTransactions from "./ShowTransactions";
-import AddNewCard from "./AddNewCard";
-import HomeIcon from "../icons/home.png";
-import TransactionIcon from "../icons/transactions.png";
-import CardsIcon from "../icons/cards.png";
-import AccountIcon from "../icons/account.png";
+import ShowTransactions from "../transactions/ShowTransactions";
+import AddNewCard from "../cards/AddNewCard";
+import HomeIcon from "../../icons/home.png";
+import TransactionIcon from "../../icons/transactions.png";
+import CardsIcon from "../../icons/cards.png";
+import AccountIcon from "../../icons/account.png";
 
 const Tabs = ({
   transactions,

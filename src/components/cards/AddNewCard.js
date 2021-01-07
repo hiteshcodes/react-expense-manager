@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddNew from "../icons/addNew.png";
+import AddNew from "../../icons/addNew.png";
 
 const AddNewCard = ({ handleAddNewCard }) => {
   // const [cards, setCards] = useState([]);
