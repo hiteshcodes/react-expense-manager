@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Tip = ({ balance }) => {
+const Tip = ({ income, expense, balance }) => {
   const [tip, setTip] = useState("");
 
   useEffect(() => {

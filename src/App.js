@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Modal from "./components/transactions/ModalInput";
-import Tabs from "./components/home/Tabs";
-
+import Navbar from "./components/Navbar";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Account from "./components/Account/Account";
+import TransactionsHome from "./components/Transactions/TransactionsHome";
+import Home from "./components/Home/Home";
+import CardsHome from "./components/Cards/CardsHome";
+import Login from "./components/Account/Login/Login";
+import Signup from "./components/Account/Signup/Signup";
 const App = () => {
   const [cards, setCards] = useState([
     // {
@@ -156,18 +161,46 @@ const App = () => {
   };
 
   return (
-    <>
-      {/* <h2 className="text-center m-3 main-heading">react-expense-manager</h2> */}
-      <Tabs
-        transactions={transactions}
-        cards={cards}
-        handleAddNewCard={handleAddNewCard}
-        deleteCard={deleteCard}
-        setCards={setCards}
-        deleteTransaction={deleteTransaction}
-      />
-      <Modal transaction={transaction} cards={cards} />
-    </>
+    <div>
+      <BrowserRouter>
+        <Navbar />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={(props) => <Home transactions={transactions} {...props} />}
+          />
+          <Route
+            path="/cards"
+            render={(props) => (
+              <CardsHome
+                cards={cards}
+                setCards={setCards}
+                handleAddNewCard={handleAddNewCard}
+                deleteCard={deleteCard}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/transactions"
+            render={(props) => (
+              <TransactionsHome
+                transactions={transactions}
+                transaction={transaction}
+                deleteTransactions={deleteTransaction}
+                setTransactions={setTransactions}
+                cards={cards}
+                {...props}
+              />
+            )}
+          />
+          <Route path="/account" component={Account} />
+          <Route path="/account/login" component={Login} />
+          <Route path="/account/signup" component={Signup} />
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 };
 

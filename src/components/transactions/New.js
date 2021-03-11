@@ -9,7 +9,7 @@ const New = () => {
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        <img src={AddNew} alt="" width="30px" />
+        <img src={AddNew} alt="addnew" width="30px" />
       </button>
     </div>
   );

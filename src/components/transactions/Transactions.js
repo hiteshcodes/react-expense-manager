@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import New from "./New";
-import ModalTransactionDetail from "../transactions/ModalTransactionDetail";
+import ModalTransactionDetails from "./ModalTransactionDetails";
 import Printer from "../../icons/printer.png";
 import Delete from "../../icons/delete.png";
 
@@ -100,7 +100,7 @@ const ShowTransactions = ({ transactions, deleteTransaction }) => {
   return (
     <div className="container show-all-transactions">
       <New />
-      <ModalTransactionDetail modalDetail={modalDetail} />
+      <ModalTransactionDetails modalDetail={modalDetail} />
       <ul className="list-group p-0 mt-4">
         <div className="d-flex justify-content-between">
           <h5 className="m-2 text-primary p-1 my-auto">Transactions</h5>

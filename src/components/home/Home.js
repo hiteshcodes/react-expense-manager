@@ -1,10 +1,10 @@
 import React from "react";
-import Balance from "../balance/Balance";
+import BalanceHome from "../Balance/BalanceHome";
 
 const Home = ({ transactions }) => {
   return (
-    <div className="container mt-5">
-      <Balance transactions={transactions} />
+    <div>
+      <BalanceHome transactions={transactions} />
     </div>
   );
 };

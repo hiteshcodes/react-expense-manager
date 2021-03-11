@@ -3,7 +3,7 @@ import { Link, NavLink, withRouter } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <>
+    <div className="">
       <nav className="navigation w-100">
         <ul className="d-flex justify-content-between p-0 my-auto ">
           <li className="list-group-item bg-transparent border">
@@ -28,8 +28,8 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
-    </>
+    </div>
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

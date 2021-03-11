@@ -55,7 +55,8 @@ const AddNewCard = ({ handleAddNewCard }) => {
           data-bs-toggle="modal"
           data-bs-target="#add-new-card"
         >
-          <img src={AddNew} alt="" width="25px" />
+          {/* <img src={AddNew} alt="add_new_card" width="25px" /> */}
+          asd
         </button>
       </div>
       <div
