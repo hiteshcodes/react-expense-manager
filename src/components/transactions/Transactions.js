@@ -44,13 +44,13 @@ const ShowTransactions = ({ transactions, deleteTransaction }) => {
             style={
               items.type === "income"
                 ? {
-                    backgroundColor: "#c5fad9",
-                    color: "#045762",
+                    backgroundColor: "var(--income)",
+                    color: "var(--income-text)",
                     fontWeight: "500",
                   }
                 : {
-                    backgroundColor: "#e6b2c6",
-                    color: "#cd0a0a",
+                    backgroundColor: "var(--expense)",
+                    color: "var(--expense-text)",
                     fontWeight: "500",
                   }
             }
@@ -63,6 +63,7 @@ const ShowTransactions = ({ transactions, deleteTransaction }) => {
                   href="!#"
                   style={{
                     cursor: "pointer",
+                    color: `var(--${items.type}-text)`,
                   }}
                   data-bs-toggle="modal"
                   data-bs-target="#transactionDetailModal"
@@ -120,7 +121,6 @@ const ShowTransactions = ({ transactions, deleteTransaction }) => {
           </div>
         </div>
         <Alltransactions />
-        {/* <Total /> */}
       </ul>
     </div>
   );

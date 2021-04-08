@@ -55,8 +55,7 @@ const AddNewCard = ({ handleAddNewCard }) => {
           data-bs-toggle="modal"
           data-bs-target="#add-new-card"
         >
-          {/* <img src={AddNew} alt="add_new_card" width="25px" /> */}
-          asd
+          <img src={AddNew} alt="add_new_card" width="25px" />
         </button>
       </div>
       <div
@@ -217,7 +216,7 @@ const AddNewCard = ({ handleAddNewCard }) => {
               </div>
               <div className="d-flex justify-content-end">
                 <button
-                  className="btn btn-secondary"
+                  className="btn btn-secondary my-3"
                   onClick={handleSubmitAddNewCard}
                 >
                   Submit

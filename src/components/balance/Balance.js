@@ -26,12 +26,11 @@ const Balance = ({ transactions }) => {
 
   return (
     <div className="fs-5">
-      <h6 className="m-2 text-primary">Balance</h6>
       <span
         className="p-4 m-4 d-flex flex-wrap rounded"
         style={{
-          backgroundColor: "#c5fad9",
-          color: "#045762",
+          backgroundColor: "var(--income)",
+          color: "var(--income-text)",
           fontWeight: "500",
         }}
       >
@@ -40,8 +39,8 @@ const Balance = ({ transactions }) => {
       <span
         className="p-4 m-4 d-flex flex-wrap rounded"
         style={{
-          backgroundColor: "#e6b2c6",
-          color: "#cd0a0a",
+          backgroundColor: "var(--expense)",
+          color: "var(--expense-text)",
           fontWeight: "500",
         }}
       >
@@ -50,7 +49,8 @@ const Balance = ({ transactions }) => {
       <span
         className="p-4 m-4 d-flex flex-wrap rounded"
         style={{
-          backgroundColor: "#dff2fa",
+          backgroundColor: "var(--balance)",
+          color: "var(--balance-text)",
           fontWeight: "500",
         }}
       >

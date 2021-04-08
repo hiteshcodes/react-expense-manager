@@ -7,7 +7,18 @@ import Home from "./components/Home/Home";
 import CardsHome from "./components/Cards/CardsHome";
 import Login from "./components/Account/Login/Login";
 import Signup from "./components/Account/Signup/Signup";
+import { auth } from "./firebase";
+
 const App = () => {
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log(`%c ${null}`, "font-size: 18px; color: #ffc93c");
+      }
+      console.log("%c null", "font-size: 24px; color: #ffc93c");
+    });
+  }, []);
+
   const [cards, setCards] = useState([
     // {
     //   id: "0",
@@ -171,6 +182,7 @@ const App = () => {
             render={(props) => <Home transactions={transactions} {...props} />}
           />
           <Route
+            exact
             path="/cards"
             render={(props) => (
               <CardsHome
@@ -183,6 +195,7 @@ const App = () => {
             )}
           />
           <Route
+            exact
             path="/transactions"
             render={(props) => (
               <TransactionsHome
@@ -195,9 +208,10 @@ const App = () => {
               />
             )}
           />
-          <Route path="/account" component={Account} />
-          <Route path="/account/login" component={Login} />
-          <Route path="/account/signup" component={Signup} />
+          {/* <Route exact path="/account" component={Account} /> */}
+          <Route exact path="/account" component={Account} />
+          <Route exact path="/account/login" component={Login} />
+          <Route exact path="/account/signup" component={Signup} />
         </Switch>
       </BrowserRouter>
     </div>

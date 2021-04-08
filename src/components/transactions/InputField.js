@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Bus from "../../icons/bus.png";
 
 const InputField = ({ transaction, cards }) => {
   const [inputName, setInputName] = useState("");
@@ -221,7 +222,7 @@ const InputField = ({ transaction, cards }) => {
             onChange={handleDescription}
           />
         </div>
-        <div className="col col-lg-4 col-md-2 col-6 position-relative mt-3">
+        <div className="col col-lg-4 col-md-2 position-relative mt-3">
           <small
             className="position-absolute px-2"
             style={{ top: "-10px", left: "20px", backgroundColor: "#fff" }}
@@ -252,7 +253,7 @@ const InputField = ({ transaction, cards }) => {
           </select>
         </div>
         <small className="text-danger fw-bold">{error}</small>
-        <div className="col col-lg-1 col-md-2 col-sm-3 mt-auto">
+        <div className="d-flex flex-row-reverse">
           <button className="btn border-secondary mt-3" onClick={handleSubmit}>
             Submit
           </button>

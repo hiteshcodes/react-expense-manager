@@ -2,13 +2,63 @@
   margin: 0;
   padding: 0;
 }
+:root {
+  --bg: #0d1017;
+  --headline: #7000df;
+  --btn: #892ee5;
+  --btn-text: #bac3fd;
+  --nav: #d0e8f2;
+  --color: #e2e8f0;
+  --secondary: #8998ac;
+  --income: #bdefc7;
+  --income-text: #045762;
+  --expense: #fb7777;
+  --expense-text: #e40017;
+  --balance: #7868e6;
+  --balance-text: #eff8ff;
+}
+
 body {
-  background-color: #d0e8f2;
+  background-color: var(--bg);
+  color: var(--btn-text);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+input {
+  height: 46px;
+  color: white !important;
+}
+.modal-body .container .row .col input {
+  height: 46px;
+}
+.nav {
+  background-color: var(--nav);
+}
+.navigation {
+  margin: 10px auto;
+}
+.navigation ul li a {
+  border: none !important;
+  display: flex;
+  text-decoration: none;
+}
+.navigation ul li:hover {
+  background: none;
+}
+.navigation img {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 33px;
+  margin: auto 7px;
+}
+.navigation ul li span {
+  margin-top: 4px;
+  font-size: 18px;
 }
 
 .form-select {
@@ -51,22 +101,20 @@ code {
   text-align: center;
 }
 @media only screen and (max-width: 600px) {
-  .tabs {
-    background-color: #d0e8f2;
-    width: 100%;
-    margin: auto;
-    font-size: 1.1rem;
-  }
-  .nav-pills {
-    background-color: #d0e8f2;
+  .navigation {
+    background-color: var(--nav);
     width: 100%;
     position: fixed;
     bottom: 3px;
     margin: auto;
     z-index: 100;
   }
-  .nav-item {
-    margin: 0;
+  .navigation img {
+    width: 34px;
+    margin: auto 7px;
+  }
+  .navigation ul li span {
+    display: none;
   }
   .tip {
     position: fixed;
@@ -79,7 +127,7 @@ code {
   .add-new-button,
   .print-btn,
   .main-heading,
-  .nav-item {
+  .navigation {
     display: none;
   }
 }
