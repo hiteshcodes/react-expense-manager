@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Bus from "../../icons/bus.png";
 
 const InputField = ({ transaction, cards }) => {
   const [inputName, setInputName] = useState("");
@@ -99,8 +98,6 @@ const InputField = ({ transaction, cards }) => {
       timeStamp: timeStamp,
     };
 
-    console.log(newTransaction);
-
     transaction(newTransaction);
 
     setInputName("");
@@ -118,15 +115,19 @@ const InputField = ({ transaction, cards }) => {
         <div className="col col-lg-6 col-md-6 col-sm-4 col-6 position-relative mt-3">
           <small
             className="position-absolute px-2"
-            style={{ top: "-10px", left: "20px", backgroundColor: "#fff" }}
+            style={{
+              color: "#363b52",
+              top: "-10px",
+              left: "20px",
+              backgroundColor: "#fff",
+            }}
           >
             Name
           </small>
           <input
             style={{ border: "1px solid black", padding: "10px" }}
-            className="m-auto"
+            className="m-auto form-control"
             type="text"
-            className="form-control"
             value={inputName}
             onChange={(e) => handleInputName(e)}
           />
@@ -134,15 +135,19 @@ const InputField = ({ transaction, cards }) => {
         <div className="col col-lg-6 col-md-3 col-sm-4 col-6 position-relative mt-3">
           <small
             className="position-absolute px-2"
-            style={{ top: "-10px", left: "20px", backgroundColor: "#fff" }}
+            style={{
+              color: "#363b52",
+              top: "-10px",
+              left: "20px",
+              backgroundColor: "#fff",
+            }}
           >
             Amount
           </small>
           <input
             style={{ border: "1px solid black", padding: "10px" }}
-            className="m-auto"
+            className="m-auto form-control"
             type="number"
-            className={["form-control"]}
             value={inputAmount}
             onChange={(e) => handleInputAmount(e)}
           />
@@ -151,12 +156,20 @@ const InputField = ({ transaction, cards }) => {
           <div className="mt-3">
             <small
               className="position-absolute px-2"
-              style={{ top: "5px", left: "20px", backgroundColor: "#fff" }}
+              style={{
+                color: "#363b52",
+                top: "5px",
+                left: "20px",
+                backgroundColor: "#fff",
+              }}
             >
               Type
             </small>
             <select
-              style={{ border: "1px solid black", padding: "10px" }}
+              style={{
+                border: "1px solid black",
+                padding: "10px",
+              }}
               className="form-select m-auto"
               id="inputGroupSelect02"
               value={type}
@@ -172,7 +185,12 @@ const InputField = ({ transaction, cards }) => {
           <div className="col col-lg-3 col-md-3 col-sm-4 col-6 position-relative mt-3">
             <small
               className="position-absolute px-2"
-              style={{ top: "-10px", left: "20px", backgroundColor: "#fff" }}
+              style={{
+                color: "#363b52",
+                top: "-10px",
+                left: "20px",
+                backgroundColor: "#fff",
+              }}
             >
               Mode
             </small>
@@ -189,35 +207,37 @@ const InputField = ({ transaction, cards }) => {
             >
               <option>Select</option>
               <option value="Cash">Cash</option>
-              {cards.length > 0 ? (
-                cards.map((card) => {
-                  const cardDetail = `${card.type} **** ${card.number.slice(
-                    -4
-                  )}`;
-                  return (
-                    <option value={card.number} key={card.number}>
-                      {cardDetail}
-                    </option>
-                  );
-                })
-              ) : (
-                <h3>No Cards Added</h3>
-              )}
+              {cards.length > 0
+                ? cards.map((card) => {
+                    const cardDetail = `${card.type} **** ${card.number.slice(
+                      -4
+                    )}`;
+                    return (
+                      <option value={card.number} key={card.number}>
+                        {cardDetail}
+                      </option>
+                    );
+                  })
+                : "No Cards Added"}
             </select>
           </div>
         )}
         <div className="col col-lg-4 col-md-3 col-sm-4 col-6 position-relative mt-3">
           <small
             className="position-absolute px-2"
-            style={{ top: "-10px", left: "20px", backgroundColor: "#fff" }}
+            style={{
+              color: "#363b52",
+              top: "-10px",
+              left: "20px",
+              backgroundColor: "#fff",
+            }}
           >
             Description
           </small>
           <input
             style={{ border: "1px solid black", padding: "10px" }}
-            className="m-auto"
+            className="m-auto form-control"
             type="text"
-            className="form-control"
             value={description}
             onChange={handleDescription}
           />
@@ -225,14 +245,18 @@ const InputField = ({ transaction, cards }) => {
         <div className="col col-lg-4 col-md-2 position-relative mt-3">
           <small
             className="position-absolute px-2"
-            style={{ top: "-10px", left: "20px", backgroundColor: "#fff" }}
+            style={{
+              color: "#363b52",
+              top: "-10px",
+              left: "20px",
+              backgroundColor: "#fff",
+            }}
           >
             Category
           </small>
           <select
             style={{ border: "1px solid black", padding: "10px" }}
             className="form-select m-auto"
-            id="inputGroupSelect02"
             value={category}
             onChange={(e) => handleCategory(e)}
           >

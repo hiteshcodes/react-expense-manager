@@ -1,14 +1,17 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
+import dotenv from "dotenv";
 
-const config = {
-  //   apiKey: process.env.API_KEY,
-  //   authDomain: process.env.AUTH_DOMAIN,
-  //   databaseURL: process.env.DATABASE_URL,
-  //   projectId: process.env.PROJECT_ID,
-  //   storageBucket: process.env.STORAGE_BUCKET,
-  //   messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  //   appId: process.env.APP_ID,
+dotenv.config();
+var firebaseConfig = {
+  // apiKey: process.env.FIREBASE_APIKEY,
+  // authDomain: process.env.FIREBASE_AUTHDOMAIN,
+  // projectId: process.env.FIREBASE_PROJECTID,
+  // storageBucket: process.env.FIREBASE_STORAGEBUCKET,
+  // messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
+  // appId: process.env.FIREBASE_APPID,
   apiKey: "AIzaSyALhTvDF2OU7wo7nJqT03OTQj5TEttsT4A",
   authDomain: "expense-manager-f83b3.firebaseapp.com",
   projectId: "expense-manager-f83b3",
@@ -17,5 +20,8 @@ const config = {
   appId: "1:578884303828:web:cec89285e06ed339d2b441",
   measurementId: "G-DBZGHXKR1G",
 };
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
+export const storage = firebase.storage();
 export const auth = firebase.auth();
+export const firestore = firebase.firestore();
+export const timeStamp = firebase.firestore.Timestamp();

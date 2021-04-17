@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import { auth, firestore } from "../../../firebase";
 import "./Signup.css";
-import { auth } from "../../../firebase";
+import moment from "moment";
 
 const Signup = () => {
+  const history = useHistory();
   const [signup, setSignup] = useState({
     firstName: "",
     lastName: "",
@@ -61,27 +62,29 @@ const Signup = () => {
     //     );
     //   }
     //}
+    const signupCred = {
+      firstName: signup.firstName,
+      lastName: signup.lastName,
+      email: signup.email,
+      password: signup.password,
+    };
 
-    axios
-      .post("http://localhost:3030/api/signup", signup, {
-        "Content-Type": "application/json",
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.data === "User created") {
-        }
-        if (
-          res.date === "The email address is already in use by another account."
-        ) {
-        } else {
-          setServerError(true);
-          setServerErrorText(res.data);
-        }
-        console.log("signed up success");
-      })
-      .catch((error) => {
-        setServerError(true);
-        setServerErrorText(error.message);
+    auth
+      .createUserWithEmailAndPassword(signupCred.email, signupCred.password)
+      .then((data) => data.user.email)
+      .then(async (email) => {
+        const newUser = {
+          firstName: signup.firstName,
+          lastName: signup.lastName,
+          email: email,
+          createAt: moment().format(),
+        };
+        await firestore.collection(`users`).doc(email).set(newUser);
+        window.location.reload();
+        alert("signup success");
+        setTimeout(() => {
+          history.push("/");
+        }, 2500);
       });
   };
 
@@ -150,13 +153,16 @@ const Signup = () => {
               className="form-check-label link-secondary text-decoration-none"
               id="exampleInput"
               exact
-              to="/account/login"
+              to="/"
             >
               Already a user? Login
             </NavLink>
           </div>
           {serverError && <small>{serverErrorText}</small>} <br />
-          <button type="submit" className="btn text-white border-light my-3">
+          <button
+            type="submit"
+            className="btn text-white border-light my-3 py-2 px-4"
+          >
             Submit
           </button>
           <br />

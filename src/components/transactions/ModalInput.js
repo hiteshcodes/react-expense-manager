@@ -2,6 +2,7 @@ import React from "react";
 import InputField from "./InputField";
 
 const Modal = ({ transaction, cards }) => {
+  
   return (
     <>
       <div
@@ -32,7 +33,6 @@ const Modal = ({ transaction, cards }) => {
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
-                onClick={() => console.log("object")}
               >
                 Close
               </button>

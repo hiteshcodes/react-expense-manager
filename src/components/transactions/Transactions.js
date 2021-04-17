@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import New from "./New";
 import ModalTransactionDetails from "./ModalTransactionDetails";
-import Printer from "../../icons/printer.png";
+import Printer from "../../icons/print.png";
 import Delete from "../../icons/delete.png";
 
 const ShowTransactions = ({ transactions, deleteTransaction }) => {
@@ -107,7 +107,7 @@ const ShowTransactions = ({ transactions, deleteTransaction }) => {
           <h5 className="m-2 text-primary p-1 my-auto">Transactions</h5>
           <div className="month-picker d-flex">
             <input
-              className="month-picker-input bg-transparent border-primary rounded p-1"
+              className="month-picker-input text-light bg-transparent border-primary rounded p-1"
               type="month"
               value={month}
               onChange={handleFilter}

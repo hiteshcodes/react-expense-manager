@@ -1,6 +1,13 @@
 import React from "react";
-const Account = () => {
-  return <div>Account</div>;
+import AccountNavbar from "./Navbar/AccountNavbar";
+import Profile from "./Profile";
+const Account = ({ user }) => {
+  return (
+    <div>
+      <AccountNavbar user={user} />
+      <Profile user={user} />
+    </div>
+  );
 };
 
 export default Account;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import Home from "../icons/navbar_icons/home.svg";
 import Cards from "../icons/navbar_icons/cards.svg";
 import Account from "../icons/navbar_icons/account.svg";

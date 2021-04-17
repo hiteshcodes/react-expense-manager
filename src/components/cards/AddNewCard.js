@@ -47,7 +47,7 @@ const AddNewCard = ({ handleAddNewCard }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container text-dark">
       <div className="fixed">
         <button
           type="button"
@@ -93,9 +93,8 @@ const AddNewCard = ({ handleAddNewCard }) => {
                   </small>
                   <input
                     style={{ border: "1px solid black", padding: "10px" }}
-                    className="m-auto"
+                    className="m-auto form-control"
                     type="number"
-                    className={["form-control"]}
                     value={cardNumber}
                     onChange={(e) => setCardNumber(e.target.value)}
                   />
@@ -113,9 +112,8 @@ const AddNewCard = ({ handleAddNewCard }) => {
                   </small>
                   <input
                     style={{ border: "1px solid black", padding: "10px" }}
-                    className="m-auto"
+                    className="m-auto form-control"
                     type="text"
-                    className={["form-control"]}
                     value={cardHolder}
                     onChange={(e) => setCardHolder(e.target.value)}
                   />
@@ -181,9 +179,8 @@ const AddNewCard = ({ handleAddNewCard }) => {
                   </small>
                   <input
                     style={{ border: "1px solid black", padding: "10px" }}
-                    className="m-auto"
+                    className="m-auto form-control"
                     type="number"
-                    className="form-control"
                     value={validFrom}
                     onChange={(e) => setValidFrom(e.target.value)}
                   />
@@ -201,9 +198,8 @@ const AddNewCard = ({ handleAddNewCard }) => {
                   </small>
                   <input
                     style={{ border: "1px solid black", padding: "10px" }}
-                    className="m-auto"
+                    className="m-auto form-control"
                     type="number"
-                    className="form-control"
                     value={validUpto}
                     onChange={(e) => setValidUpto(e.target.value)}
                   />

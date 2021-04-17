@@ -9,8 +9,10 @@ const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [error, setError] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const [emailErrorText, setEmailErrorText] = useState("");
   const [passwordErrorText, setPasswordErrorText] = useState("");
+  const [serverErrorText, setServerErrorText] = useState("");
 
   const loginSubmit = (event) => {
     event.preventDefault();
@@ -50,21 +52,36 @@ const Login = () => {
       password: loginPassword,
     };
 
-    axios
-      .post("http://localhost:3030/api/login", loginCred, {
-        "content-type": "application/javascript",
-      })
-      .then((res) => console.log(res.data))
-      .catch((error) =>
-        error ? console.log(error.message) : history.push("/account")
-      );
+    // axios
+    //   .post("http://localhost:3030/api/login", loginCred, {
+    //     "content-type": "application/javascript",
+    //   })
+    //   .then((res) => {
+    //     // setCurrUserEmailFromServer(res.data.data.user.email);
+    //     localStorage.removeItem("userEmail");
+    //     localStorage.setItem("userEmail", res.data.data.user.email);
+    //     history.push("/");
+    //     window.location.reload();
+    //     alert("success");
+    //     console.log(res.data.data.user.email);
+    //   })
+    //   .catch((error) => {
+    //     if (error) {
+    //       if (error.message === "Request failed with status code 403") {
+    //       }
+    //     }
+    //   });
 
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log(`%c ${null}`, "font-size: 24px; color: #ffc93c");
-      }
-      console.log("%c null", "font-size: 24px; color: #ffc93c");
-    });
+    auth
+      .signInWithEmailAndPassword(loginCred.email, loginCred.password)
+      .then((data) => {
+        setServerError(false);
+        history.push("/");
+      })
+      .catch((error) => {
+        setServerError(true);
+        setServerErrorText(error.message);
+      });
   };
 
   return (
@@ -73,7 +90,7 @@ const Login = () => {
       className="row d-flex mt-5 w-100 align-items-center justify-content-center"
     >
       <div className="col col-lg-6 col-10">
-        <div className="display-4 my-5">Login</div>
+        <div className="display-4 my-5"> Please Login</div>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input
@@ -102,12 +119,19 @@ const Login = () => {
           <NavLink
             className="form-check-label link-secondary text-decoration-none"
             exact
-            to="/account/signup"
+            to="/signup"
           >
             New User? Signup
           </NavLink>
         </div>
-        <button type="submit" className="btn text-white border-light my-3">
+        {serverError && (
+          <small className="text-danger m-0">{serverErrorText}</small>
+        )}
+        <br />
+        <button
+          type="submit"
+          className="btn text-white border-light my-3 py-2 px-4"
+        >
           Submit
         </button>
       </div>

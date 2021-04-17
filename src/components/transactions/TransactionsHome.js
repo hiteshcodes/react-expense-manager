@@ -1,11 +1,10 @@
 import React from "react";
-import InputField from "./InputField";
 import Transactions from "./Transactions";
 import ModalInput from "./ModalInput";
 
 const TransactionsHome = ({
   transactions,
-  deleteTransactions,
+  deleteTransaction,
   transaction,
   cards,
 }) => {
@@ -13,7 +12,7 @@ const TransactionsHome = ({
     <div>
       <Transactions
         transactions={transactions}
-        deleteTransactions={deleteTransactions}
+        deleteTransaction={deleteTransaction}
       />
       <ModalInput transaction={transaction} cards={cards} />
     </div>

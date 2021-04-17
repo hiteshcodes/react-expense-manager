@@ -3,7 +3,7 @@ import React from "react";
 const ModalTransactionDetail = ({ modalDetail }) => {
   return (
     <div
-      className="modal fade"
+      className="modal fade text-dark"
       id="transactionDetailModal"
       tabIndex="-1"
       aria-labelledby="transactionDetailModal"
@@ -35,7 +35,14 @@ const ModalTransactionDetail = ({ modalDetail }) => {
                   </li>
                   <li className="list-group-item">Type: {item.type}</li>
                   <li className="list-group-item">
-                    Payment mode: **** **** **** {item.mode.slice(-4)}
+                    asd{" "}
+                    {item.mode === "Cash" ? (
+                      <span>Payment Mode: {item.mode}</span>
+                    ) : (
+                      <span>
+                        Payment mode: **** **** **** {item.mode.slice(-4)}
+                      </span>
+                    )}
                   </li>
                   <li className="list-group-item">Amount: {item.amount}</li>
                   <li className="list-group-item">

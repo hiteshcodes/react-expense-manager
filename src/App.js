@@ -7,17 +7,11 @@ import Home from "./components/Home/Home";
 import CardsHome from "./components/Cards/CardsHome";
 import Login from "./components/Account/Login/Login";
 import Signup from "./components/Account/Signup/Signup";
-import { auth } from "./firebase";
+import { auth, firestore } from "./firebase";
+import Loading from "./Loading";
 
 const App = () => {
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log(`%c ${null}`, "font-size: 18px; color: #ffc93c");
-      }
-      console.log("%c null", "font-size: 24px; color: #ffc93c");
-    });
-  }, []);
+  const [user, setUser] = useState(null);
 
   const [cards, setCards] = useState([
     // {
@@ -126,95 +120,177 @@ const App = () => {
     // },
   ]);
 
-  // get transactions from localstorage
+  // get current logged in user
   useEffect(() => {
-    const transactions = localStorage.getItem("transactions");
-    transactions && setTransactions(JSON.parse(transactions));
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user);
+        setUser(user);
+        // get all transactions
+        firestore
+          .collection(`users`)
+          .doc(user.email)
+          .collection(`transactions`)
+          .onSnapshot((snapshot) => {
+            // return setCards(data.data());
+            setTransactions(snapshot.docs.map((doc) => doc.data()));
+          });
+        // get all cards
+        firestore
+          .collection(`users`)
+          .doc(user.email)
+          .collection(`cards`)
+          .onSnapshot((snapshot) => {
+            // return setCards(data.data());
+            setCards(snapshot.docs.map((doc) => doc.data()));
+          });
+      } else {
+        console.log("No User");
+      }
+    });
   }, []);
 
+  // get transactions from localstorage
+  // useEffect(() => {
+  // localstorage
+  // const transactions = localStorage.getItem("transactions");
+  // transactions && setTransactions(JSON.parse(transactions));
+  // }, []);
+
   // set transactions from localstorage
-  useEffect(() => {
-    localStorage.setItem("transactions", JSON.stringify(transactions));
-  }, [transactions]);
+  // useEffect(() => {
+  //   localStorage.setItem("transactions", JSON.stringify(transactions));
+  // }, [transactions]);
 
   const transaction = (newTransaction) => {
     setTransactions([newTransaction, ...transactions]);
-    localStorage.setItem("transactions", JSON.stringify(transactions));
+    console.log("new trans ", newTransaction);
+    // localStorage.setItem("transactions", JSON.stringify(transactions));
+
+    firestore
+      .collection(`users`)
+      .doc(user.email)
+      .collection(`transactions`)
+      .doc(newTransaction.name)
+      .set(newTransaction)
+      .then(() => alert("Transaction Added"))
+      .catch((error) => alert(error.message));
   };
 
   // get cards from localstorage
-  useEffect(() => {
-    const cards = localStorage.getItem("cards");
-    cards && setCards(JSON.parse(cards));
-  }, []);
+  // useEffect(() => {
+  //   const cards = localStorage.getItem("cards");
+  //   cards && setCards(JSON.parse(cards));
+  // }, []);
 
   const handleAddNewCard = (newCardObj) => {
-    setCards([newCardObj, ...cards]);
+    firestore
+      .collection(`users`)
+      .doc(user.email)
+      .collection(`cards`)
+      .doc(newCardObj.number)
+      .set(newCardObj)
+      .then(() => alert("Card Added"))
+      .catch((error) => alert(error.message));
   };
 
   // set cards from localstorage
-  useEffect(() => {
-    localStorage.setItem("cards", JSON.stringify(cards));
-  }, [cards]);
+  // useEffect(() => {
+  //   localStorage.setItem("cards", JSON.stringify(cards));
+  // }, [cards]);
 
   const deleteCard = (card) => {
-    const deleteCard = cards.filter((c) => c.id !== card.id);
-    setCards(deleteCard);
-    localStorage.setItem("cards", JSON.stringify(deleteCard));
+    // const deleteCard = cards.filter((c) => c.id !== card.id);
+    // setCards(deleteCard);
+    // localStorage.setItem("cards", JSON.stringify(deleteCard));
+    firestore
+      .collection(`users`)
+      .doc(user.email)
+      .collection(`cards`)
+      .doc(card.number)
+      .delete();
   };
 
   const deleteTransaction = (items) => {
-    const deteledTransaction = transactions.filter(
-      (transaction) => transaction.id !== items.id
-    );
-    setTransactions(deteledTransaction);
-    localStorage.setItem("transactions", JSON.stringify(deteledTransaction));
+    // const deteledTransaction = transactions.filter(
+    //   (transaction) => transaction.id !== items.id
+    // );
+    // setTransactions(deteledTransaction);
+    // localStorage.setItem("transactions", JSON.stringify(deteledTransaction));
+    console.log("delete transaction");
+    firestore
+      .collection(`users`)
+      .doc(user.email)
+      .collection(`transactions`)
+      .doc(items.name)
+      .delete();
   };
 
   return (
-    <div>
-      <BrowserRouter>
-        <Navbar />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) => <Home transactions={transactions} {...props} />}
-          />
-          <Route
-            exact
-            path="/cards"
-            render={(props) => (
-              <CardsHome
-                cards={cards}
-                setCards={setCards}
-                handleAddNewCard={handleAddNewCard}
-                deleteCard={deleteCard}
-                {...props}
-              />
+    <>
+      <div>
+        <BrowserRouter>
+          <Navbar />
+          <Switch>
+            {user ? (
+              <>
+                <Route
+                  exact
+                  path="/"
+                  render={(props) => (
+                    <Home transactions={transactions} {...props} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/cards"
+                  render={(props) => (
+                    <CardsHome
+                      cards={cards}
+                      user={user}
+                      setCards={setCards}
+                      handleAddNewCard={handleAddNewCard}
+                      deleteCard={deleteCard}
+                      {...props}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/transactions"
+                  render={(props) => (
+                    <TransactionsHome
+                      user={user}
+                      transactions={transactions}
+                      transaction={transaction}
+                      deleteTransaction={deleteTransaction}
+                      setTransactions={setTransactions}
+                      cards={cards}
+                      {...props}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/account"
+                  render={(props) => (
+                    <Account component={Account} user={user} {...props} />
+                  )}
+                />
+              </>
+            ) : (
+              <>
+                <Route exact path={"/"} component={Login} />
+                <Route exact path={"/transactions"} component={Login} />
+                <Route exact path={"/cards"} component={Login} />
+                <Route exact path="/account" component={Login} />
+                <Route exact path="/signup" component={Signup} />
+              </>
             )}
-          />
-          <Route
-            exact
-            path="/transactions"
-            render={(props) => (
-              <TransactionsHome
-                transactions={transactions}
-                transaction={transaction}
-                deleteTransactions={deleteTransaction}
-                setTransactions={setTransactions}
-                cards={cards}
-                {...props}
-              />
-            )}
-          />
-          {/* <Route exact path="/account" component={Account} /> */}
-          <Route exact path="/account" component={Account} />
-          <Route exact path="/account/login" component={Login} />
-          <Route exact path="/account/signup" component={Signup} />
-        </Switch>
-      </BrowserRouter>
-    </div>
+          </Switch>
+        </BrowserRouter>
+      </div>
+    </>
   );
 };
 
