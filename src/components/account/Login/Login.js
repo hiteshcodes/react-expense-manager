@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import "./Login.css";
-import axios from "axios";
+
 import { auth } from "../../../firebase";
 
 const Login = () => {
@@ -45,32 +45,12 @@ const Login = () => {
     //   }
     // }
     else {
-      console.log(loginEmail, loginPassword);
+      // console.log(loginEmail, loginPassword);
     }
     const loginCred = {
       email: loginEmail,
       password: loginPassword,
     };
-
-    // axios
-    //   .post("http://localhost:3030/api/login", loginCred, {
-    //     "content-type": "application/javascript",
-    //   })
-    //   .then((res) => {
-    //     // setCurrUserEmailFromServer(res.data.data.user.email);
-    //     localStorage.removeItem("userEmail");
-    //     localStorage.setItem("userEmail", res.data.data.user.email);
-    //     history.push("/");
-    //     window.location.reload();
-    //     alert("success");
-    //     console.log(res.data.data.user.email);
-    //   })
-    //   .catch((error) => {
-    //     if (error) {
-    //       if (error.message === "Request failed with status code 403") {
-    //       }
-    //     }
-    //   });
 
     auth
       .signInWithEmailAndPassword(loginCred.email, loginCred.password)

@@ -80,11 +80,8 @@ const Signup = () => {
           createAt: moment().format(),
         };
         await firestore.collection(`users`).doc(email).set(newUser);
-        window.location.reload();
         alert("signup success");
-        setTimeout(() => {
-          history.push("/");
-        }, 2500);
+        history.push("/");
       });
   };
 

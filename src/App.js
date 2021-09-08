@@ -126,6 +126,7 @@ const App = () => {
       if (user) {
         console.log(user);
         setUser(user);
+        
         // get all transactions
         firestore
           .collection(`users`)
@@ -135,6 +136,7 @@ const App = () => {
             // return setCards(data.data());
             setTransactions(snapshot.docs.map((doc) => doc.data()));
           });
+
         // get all cards
         firestore
           .collection(`users`)

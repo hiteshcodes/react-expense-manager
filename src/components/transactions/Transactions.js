@@ -107,7 +107,7 @@ const ShowTransactions = ({ transactions, deleteTransaction }) => {
           <h5 className="m-2 text-primary p-1 my-auto">Transactions</h5>
           <div className="month-picker d-flex">
             <input
-              className="month-picker-input text-light bg-transparent border-primary rounded p-1"
+              className="month-picker-input text-light bg-secondary text-light rounded p-1"
               type="month"
               value={month}
               onChange={handleFilter}
