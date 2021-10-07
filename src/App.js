@@ -126,7 +126,7 @@ const App = () => {
       if (user) {
         console.log(user);
         setUser(user);
-        
+
         // get all transactions
         firestore
           .collection(`users`)
