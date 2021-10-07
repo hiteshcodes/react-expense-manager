@@ -6,12 +6,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 var firebaseConfig = {
-  // apiKey: process.env.FIREBASE_APIKEY,
-  // authDomain: process.env.FIREBASE_AUTHDOMAIN,
-  // projectId: process.env.FIREBASE_PROJECTID,
-  // storageBucket: process.env.FIREBASE_STORAGEBUCKET,
-  // messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
-  // appId: process.env.FIREBASE_APPID,
   apiKey: "AIzaSyALhTvDF2OU7wo7nJqT03OTQj5TEttsT4A",
   authDomain: "expense-manager-f83b3.firebaseapp.com",
   projectId: "expense-manager-f83b3",
